@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <h1>Welcome to the Dashboard</h1>
+
+    <div class="attendance-section">
+        <h2>Mark Attendance</h2>
+        <form th:action="@{/mark-attendance}" method="post">
+            <label>Username:
+                <input type="text" name="username" required />
+            </label><br><br>
+
+            <label>Present:
+                <select name="present">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </label><br><br>
+
+            <button type="submit">Mark Attendance</button>
+        </form>
+    </div>
+     <!-- Form to View Attendance -->
+     <div class="view-attendance-section">
+        <h2>View Attendance History</h2>
+        <form action="/view-attendance" method="get">
+            <label>Enter Username to View Attendance History:
+                <input type="text" name="username" required />
+            </label><br><br>
+            <button type="submit">View Attendance</button>
+        </form>
+    </div>
+</body>
+</html>
+
