@@ -51,10 +51,9 @@
 
         <!-- MySQL Connector -->
         <dependency>
-            <groupId>mysql</groupId>
+            <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <version>8.0.26</version>
-            <scope>runtime</scope>
+            <version>8.1.0</version> <!-- Use desired version here, or omit if managed -->
         </dependency>
 
         <!-- Spring Boot DevTools (optional, for hot reload) -->
