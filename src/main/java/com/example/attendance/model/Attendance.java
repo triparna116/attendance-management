@@ -1,6 +1,11 @@
 package com.example.attendance.model;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -10,37 +15,44 @@ public class Attendance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate date;
+    @ManyToOne
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
+    private Student student;
 
     private boolean present;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    // Constructors
-    public Attendance() {}
-
-    public Attendance(LocalDate date, boolean present, User user) {
-        this.date = date;
-        this.present = present;
-        this.user = user;
-    }
+    private LocalDate date; // Changed to LocalDate for proper date handling
 
     // Getters and Setters
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public LocalDate getDate() { return date; }
+    public Student getStudent() {
+        return student;
+    }
 
-    public void setDate(LocalDate date) { this.date = date; }
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
-    public boolean isPresent() { return present; }
+    public boolean isPresent() {
+        return present;
+    }
 
-    public void setPresent(boolean present) { this.present = present; }
+    public void setPresent(boolean present) {
+        this.present = present;
+    }
 
-    public User getUser() { return user; }
+    public LocalDate getDate() {
+        return date;
+    }
 
-    public void setUser(User user) { this.user = user; }
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 }

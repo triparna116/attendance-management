@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Attendance</title>
+</head>
+<body>
+    <h1>Attendance for <span th:text="${viewUser}">User</span></h1>
+
+    <table border="1">
+        <tr>
+            <th>Date</th>
+            <th>Present?</th>
+        </tr>
+        <tr th:each="record : ${history}">
+            <td th:text="${record.date}">Date</td>
+            <td th:text="${record.present ? 'Yes' : 'No'}">Yes</td>
+        </tr>
+    </table>
+
+    <p><a th:href="@{/dashboard}">Back to Dashboard</a></p>
+</body>
+</html>
+

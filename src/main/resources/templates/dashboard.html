@@ -27,7 +27,7 @@
      <!-- Form to View Attendance -->
      <div class="view-attendance-section">
         <h2>View Attendance History</h2>
-        <form action="/view-attendance" method="get">
+        <form th:action="@{/view-attendance}" method="get">
             <label>Enter Username to View Attendance History:
                 <input type="text" name="username" required />
             </label><br><br>

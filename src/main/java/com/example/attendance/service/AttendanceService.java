@@ -1,7 +1,7 @@
 package com.example.attendance.service;
 
 import com.example.attendance.model.Attendance;
-import com.example.attendance.model.User;
+import com.example.attendance.model.Student;
 import com.example.attendance.repository.AttendanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,18 +12,23 @@ import java.util.List;
 @Service
 public class AttendanceService {
 
-    @Autowired
-    private AttendanceRepository attendanceRepository;
+    private final AttendanceRepository attendanceRepository;
 
-    public void markAttendance(User user, boolean present) {
+    @Autowired
+    public AttendanceService(AttendanceRepository attendanceRepository) {
+        this.attendanceRepository = attendanceRepository;
+    }
+
+    public void markAttendance(Student student, boolean present, String subject) {
         Attendance attendance = new Attendance();
-        attendance.setDate(LocalDate.now());
+        attendance.setStudent(student);
         attendance.setPresent(present);
-        attendance.setUser(user);
+        attendance.setDate(LocalDate.now().toString());
+      
         attendanceRepository.save(attendance);
     }
 
-    public List<Attendance> getAttendanceForUser(User user) {
-        return attendanceRepository.findByUser(user);
+    public List<Attendance> getAttendanceForStudent(Student student) {
+        return attendanceRepository.findByStudent(student);
     }
 }
