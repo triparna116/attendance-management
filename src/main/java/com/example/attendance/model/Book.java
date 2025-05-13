@@ -1,16 +1,16 @@
 package com.example.attendance.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 
 @Entity
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // You can use AUTO or IDENTITY depending on your DB
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Using IDENTITY for auto-incrementing primary key
     private long id;
 
     @Column(nullable = false, unique = true)
@@ -47,5 +47,3 @@ public class Book {
         this.author = author;
     }
 }
-    
-

@@ -1,16 +1,19 @@
 package com.example.attendance.controller;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
 public class SimpleController {
-    @Controller
-public class SimpleController {
+
     @Value("${spring.application.name}")
-    String appName;
+    private String appName;
 
     @GetMapping("/")
     public String homePage(Model model) {
         model.addAttribute("appName", appName);
         return "home";
     }
-}
-    
 }

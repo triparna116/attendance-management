@@ -1,11 +1,12 @@
 package com.example.attendance.model;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
-import javax.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 import java.time.LocalDate;
 
 @Entity
@@ -21,7 +22,9 @@ public class Attendance {
 
     private boolean present;
 
-    private LocalDate date; // Changed to LocalDate for proper date handling
+    private LocalDate date;
+
+    private String subject; // Added this line
 
     // Getters and Setters
     public Long getId() {
@@ -55,4 +58,13 @@ public class Attendance {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 }
+
