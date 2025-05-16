@@ -31,6 +31,13 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+           <groupId>jakarta.servlet</groupId>
+           <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version> <!-- or compatible with your Spring Boot version -->
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>5.4.0</version>

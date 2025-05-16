@@ -1,11 +1,9 @@
 package com.example.attendance.repository;
 
+import java.util.Optional;  // <-- Corrected line
+import org.springframework.data.repository.CrudRepository;
 import com.example.attendance.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
     Optional<User> findByUsername(String username);
 }
-

@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class AuthController {
@@ -23,17 +25,18 @@ public class AuthController {
     }
 
     @PostMapping("/auth/login")
-    public String login(@RequestParam String username, @RequestParam String password) {
+    public String login(@RequestParam String username, @RequestParam String password,HttpSession session) {
         try {
             User user = userService.login(username, password);
+            session.setAttribute("username",user.getUsername());
+            return "redirect:/dashboard";
         } catch (AuthenticationFailureException e) {
             e.printStackTrace();
-            return "login?error=true";
+            return "redirect:/auth/login?error=true";
         } catch (NullPointerException e) {
             e.printStackTrace();
-            return "login?error=true";
+            return "redirect:/auth/login?error=true";
         }
-        return "dashboard";
     }
 
     @GetMapping("/user/register")

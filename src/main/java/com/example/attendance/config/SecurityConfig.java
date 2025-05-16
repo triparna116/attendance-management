@@ -34,16 +34,24 @@ public class SecurityConfig {
         return provider;
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf.disable())
-            //.authenticationProvider(authenticationProvider())
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/user/register", "/auth/login", "/css/*", "/js/*").permitAll()
-                .anyRequest().authenticated()
-            );
-
+   @Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf(csrf -> csrf.disable())
+        .authenticationProvider(authenticationProvider()) // UNCOMMENT THIS LINE
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/user/register", "/auth/login", "/css/", "/js/").permitAll()
+            .anyRequest().authenticated()
+        )
+        .formLogin(form -> form
+            .loginPage("/auth/login")
+            .defaultSuccessUrl("/dashboard", true)
+            .permitAll()
+        )
+        .logout(logout -> logout
+            .logoutSuccessUrl("/auth/login?logout")
+            .permitAll()
+        );
         return http.build();
     }
 }
